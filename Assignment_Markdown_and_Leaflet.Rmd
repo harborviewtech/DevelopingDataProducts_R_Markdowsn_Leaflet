@@ -1,0 +1,26 @@
+---
+title: "Ethiopian Historic Places"
+author: "Adugna Kelkay"
+date: "3/6/2021"
+output: html_document
+---
+
+# March 6, 2021
+
+## Historic Attraction sites in Ethiopia
+
+These are few of the historic, ancient cities, monuments, and attraction sites in Ethiopia also recognized and registered by UNESCO.
+
+```{r chunk 1, echo = FALSE}
+attractions  <- c("Axum", "Lalibela", "Debre Damo Monastry", "Harar - Ancient City", "Blue Nile Falls" )
+attractions_links <- c("<a href='https://en.wikipedia.org/wiki/Kingdom_of_Aksum'>Axum Kingdom</a>", "<a href='https://en.wikipedia.org/wiki/Lalibela'>Lalibela, Churches</a>", "<a href='https://en.wikipedia.org/wiki/Debre_Damo'>Debre Damo Monastry</a>", "<a href='https://en.wikipedia.org/wiki/Harar'>Harar, Ethiopia - Ancient City</a>", "<a href='https://en.wikipedia.org/wiki/Blue_Nile_Falls'>Blue Nile Falls</a>")
+lat <- c(14.133868088916948, 12.034283644267713, 14.372663029212676,
+         9.313018021488507, 11.490703004076774)
+lng <- c(38.74607534629842, 39.04311416837835, 39.28883667542846, 42.12175346653233, 37.58788969371258)
+df <- data.frame(attractions, attractions_links, lat, lng)
+library(leaflet)
+df %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(lat=lat, lng=lng, popup=attractions_links, clusterOptions=markerClusterOptions)
+```
